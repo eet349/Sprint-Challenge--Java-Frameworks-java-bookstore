@@ -26,8 +26,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 @RunWith(SpringRunner.class)
-@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT, classes = BookstoreApplicationTest.class)
+@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT, classes = BookstoreApplicationTest.class, properties = {"command.line.runner.enabled=false"})
 @AutoConfigureMockMvc
+@WithMockUser(username = "admin")
 public class BookControllerUnitTestNoDB
 {
     @Autowired
@@ -124,6 +125,7 @@ public class BookControllerUnitTestNoDB
     public void listAllBooks() throws
             Exception
     {
+
     }
 
     @Test

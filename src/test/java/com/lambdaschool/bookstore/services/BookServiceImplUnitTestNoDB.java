@@ -20,11 +20,12 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import static junit.framework.TestCase.assertEquals;
 
 @RunWith(SpringRunner.class)
-@SpringBootTest(classes = BookstoreApplicationTest.class)
+@SpringBootTest(classes = BookstoreApplicationTest.class, properties = {"command.line.runner.enabled=false"})
 public class BookServiceImplUnitTestNoDB
 {
 
@@ -115,16 +116,27 @@ public class BookServiceImplUnitTestNoDB
     @Test
     public void findAll()
     {
+        Mockito.when(bookrepos.findAll()).thenReturn(myBookList);
+
+        assertEquals(3, myBookList.size());
     }
 
     @Test
     public void findBookById()
     {
+        Mockito.when(bookrepos.findById(1L))
+                .thenReturn(Optional.of(myBookList.get(0)));
+
+        assertEquals("Flatterland", bookService.findBookById(1).getTitle());
     }
 
     @Test(expected = ResourceNotFoundException.class)
     public void notFindBookById()
     {
+        Mockito.when(bookrepos.findById(1000L))
+                .thenReturn(Optional.empty());
+
+        assertEquals("Flatterland", bookService.findBookById(1000).getTitle());
     }
 
     @Test
