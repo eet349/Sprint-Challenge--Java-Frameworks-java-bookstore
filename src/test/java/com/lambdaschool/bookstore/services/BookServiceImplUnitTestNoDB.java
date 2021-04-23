@@ -6,6 +6,7 @@ import com.lambdaschool.bookstore.models.Author;
 import com.lambdaschool.bookstore.models.Book;
 import com.lambdaschool.bookstore.models.Section;
 import com.lambdaschool.bookstore.models.Wrote;
+import com.lambdaschool.bookstore.repository.AuthorRepository;
 import com.lambdaschool.bookstore.repository.BookRepository;
 import org.junit.After;
 import org.junit.Before;
@@ -17,6 +18,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.context.junit4.SpringRunner;
+
+import static junit.framework.Assert.assertNull;
+import static junit.framework.TestCase.assertNotNull;
+import static org.mockito.ArgumentMatchers.any;
+
 
 import java.util.ArrayList;
 import java.util.List;
@@ -34,6 +40,12 @@ public class BookServiceImplUnitTestNoDB
 
     @MockBean
     private BookRepository bookrepos;
+
+    @MockBean
+            private SectionService sectionService;
+
+    @MockBean
+            private AuthorRepository authorrepo;
 
     List<Book> myBookList = new ArrayList<>();
 
@@ -118,7 +130,7 @@ public class BookServiceImplUnitTestNoDB
     {
         Mockito.when(bookrepos.findAll()).thenReturn(myBookList);
 
-        assertEquals(3, myBookList.size());
+        assertEquals(5, myBookList.size());
     }
 
     @Test
@@ -142,19 +154,50 @@ public class BookServiceImplUnitTestNoDB
     @Test
     public void delete()
     {
+        Section s9 = new Section("TEST");
+        s9.setSectionid(9);
+        Book newBook = new Book();
+        newBook.setTitle("Test book");
+        newBook.setIsbn("9780738206732");
+        newBook.setCopy(2021);
+        newBook.setSection(s9);
+
+        Mockito.when(bookrepos.findById(any(Long.class))).thenReturn(Optional.of(newBook));
+
+        bookService.delete(6L);
+        assertEquals(5,myBookList.size());
+
     }
 
     @Test
-    public void save()
+    public void savePost()
     {
+        Section s9 = new Section("TEST");
+        s9.setSectionid(9);
+//        Book newBook = new Book("Test book", "9780738206732", 2021, s1);
+        Book newBook = new Book();
+        newBook.setTitle("Test book");
+        newBook.setIsbn("9780738206732");
+        newBook.setCopy(2021);
+        newBook.setSection(s9);
+
+        Mockito.when(sectionService.findSectionById(9L))
+                .thenReturn(s9);
+
+        Mockito.when(bookrepos.save(any(Book.class)))
+                .thenReturn(newBook);
+
+        Book testBook = bookService.save(newBook);
+        assertNotNull(testBook);
+        assertEquals(newBook.getTitle(), testBook.getTitle());
     }
 
-    @Test
+    @Test       //  Not required for MVP
     public void update()
     {
     }
 
-    @Test
+    @Test       //  Not required for MVP
     public void deleteAll()
     {
     }
