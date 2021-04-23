@@ -31,7 +31,7 @@ import org.springframework.transaction.annotation.Transactional;
     value = "enabled",
     havingValue = "true",
     matchIfMissing = true)
-@Component
+//@Component
 public class SeedData
         implements CommandLineRunner
 {

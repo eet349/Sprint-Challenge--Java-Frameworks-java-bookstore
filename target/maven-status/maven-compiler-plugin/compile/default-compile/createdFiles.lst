@@ -53,3 +53,4 @@ com\lambdaschool\bookstore\config\SimpleCorsFilter.class
 com\lambdaschool\bookstore\models\WroteId.class
 com\lambdaschool\bookstore\services\SecurityUserServiceImpl.class
 com\lambdaschool\bookstore\services\BookService.class
+com\lambdaschool\bookstore\config\DataSourceConfig.class

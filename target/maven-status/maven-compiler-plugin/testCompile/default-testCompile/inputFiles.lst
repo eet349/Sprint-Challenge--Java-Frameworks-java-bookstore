@@ -1,4 +1,4 @@
-/Users/lambdajohn/Work/bookstore/src/test/java/com/lambdaschool/bookstore/services/BookServiceImplTest.java
-/Users/lambdajohn/Work/bookstore/src/test/java/com/lambdaschool/bookstore/controllers/BookControllerTest.java
-/Users/lambdajohn/Work/bookstore/src/test/java/com/lambdaschool/bookstore/SeedData.java
-/Users/lambdajohn/Work/bookstore/src/test/java/com/lambdaschool/bookstore/BookstoreApplication.java
+E:\Programming\Lambda\Unit_4\WEEK_3\Day_5\sprint-challenge\Sprint-Challenge--Java-Frameworks-java-bookstore\src\test\java\com\lambdaschool\bookstore\BookstoreApplicationTest.java
+E:\Programming\Lambda\Unit_4\WEEK_3\Day_5\sprint-challenge\Sprint-Challenge--Java-Frameworks-java-bookstore\src\test\java\com\lambdaschool\bookstore\controllers\BookControllerUnitTestNoDB.java
+E:\Programming\Lambda\Unit_4\WEEK_3\Day_5\sprint-challenge\Sprint-Challenge--Java-Frameworks-java-bookstore\src\test\java\com\lambdaschool\bookstore\SeedData.java
+E:\Programming\Lambda\Unit_4\WEEK_3\Day_5\sprint-challenge\Sprint-Challenge--Java-Frameworks-java-bookstore\src\test\java\com\lambdaschool\bookstore\services\BookServiceImplUnitTestNoDB.java
